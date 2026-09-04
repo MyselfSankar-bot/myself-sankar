@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#080b18">
+<meta name="description" content="MYSELF SANKAR - Your AI. Your Way.">
+<title>MYSELF SANKAR</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#060814;
+  color:#fff;
+  min-height:100vh;
+}
+
+.app{
+  max-width:700px;
+  margin:auto;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(0,150,255,.14),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(220,0,255,.12),transparent 30%),
+    #060814;
+}
+
+/* HEADER */
+.header{
+  padding:18px 18px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(6,8,20,.88);
+  backdrop-filter:blur(14px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:46px;
+  height:46px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#00d9ff,#635bff,#ff29c3);
+  box-shadow:0 0 24px rgba(0,180,255,.35);
+}
+
+.name{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.status{
+  font-size:11px;
+  color:#55ff9a;
+  margin-top:3px;
+}
+
+.status:before{
+  content:"";
+  display:inline-block;
+  width:7px;
+  height:7px;
+  background:#42ff91;
+  border-radius:50%;
+  margin-right:5px;
+}
+
+/* CHAT */
+.chat{
+  flex:1;
+  padding:25px 16px 125px;
+}
+
+.welcome{
+  text-align:center;
+  padding:35px 15px 25px;
+}
+
+.biglogo{
+  width:80px;
+  height:80px;
+  margin:auto;
+  border-radius:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:44px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#00d9ff,#635bff,#ff29c3);
+  box-shadow:
+    0 0 35px rgba(0,200,255,.35),
+    0 0 70px rgba(220,0,255,.15);
+}
+
+.welcome h1{
+  margin-top:18px;
+  font-size:30px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#00d9ff,#8d6bff,#ff3fc8);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.welcome p{
+  margin-top:9px;
+  color:#9ba4bd;
+  font-size:14px;
+}
+
+.message{
+  max-width:88%;
+  margin:13px 0;
+  padding:13px 15px;
+  border-radius:17px;
+  line-height:1.5;
+  font-size:14px;
+  animation:appear .25s ease;
+}
+
+.ai{
+  background:#111629;
+  border:1px solid rgba(255,255,255,.07);
+  margin-right:auto;
+}
+
+.user{
+  background:linear-gradient(135deg,#3159e8,#7149d8);
+  margin-left:auto;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SKILLS */
+.skills{
+  padding:0 15px 15px;
+}
+
+.skills-title{
+  color:#9ba4bd;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.skill-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.skill{
+  background:#101426;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  padding:14px 8px;
+  text-align:center;
+  color:#dce2f4;
+  font-size:11px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.skill:hover{
+  transform:translateY(-2px);
+  border-color:#586cff;
+}
+
+.skill-icon{
+  font-size:21px;
+  margin-bottom:7px;
+}
+
+/* INPUT */
+.input-area{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(700px,100%);
+  padding:12px 14px 18px;
+  background:linear-gradient(transparent,#060814 22%);
+}
+
+.input-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#111629;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;
+  padding:7px 8px 7px 15px;
+  box-shadow:0 -5px 30px rgba(0,0,0,.25);
+}
+
+input{
+  flex:1;
+  min-width:0;
+  background:none;
+  border:0;
+  outline:0;
+  color:white;
+  font-size:14px;
+  padding:11px 0;
+}
+
+input::placeholder{
+  color:#69738e;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.voice{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  background:#20263c;
+  color:#bfc8e4;
+  font-size:18px;
+}
+
+.send{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#00cfff,#625cff);
+  color:white;
+  font-size:18px;
+  box-shadow:0 0 18px rgba(0,190,255,.25);
+}
+
+/* BOTTOM */
+.bottom{
+  display:flex;
+  justify-content:space-around;
+  padding:10px 5px 0;
+  color:#727c97;
+  font-size:10px;
+}
+
+.bottom div{
+  text-align:center;
+}
+
+.bottom span{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px;
+}
+
+/* SAFETY */
+.safe{
+  text-align:center;
+  font-size:10px;
+  color:#55d99a;
+  padding:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+  <div class="brand">
+    <div class="logo">S</div>
+    <div>
+      <div class="name">MYSELF SANKAR</div>
+      <div class="status">Ready</div>
+    </div>
+  </div>
+</header>
+
+<main class="chat" id="chat">
+
+  <section class="welcome" id="welcome">
+    <div class="biglogo">S</div>
+    <h1>Hello, I'm <span class="gradient">MYSELF SANKAR</span></h1>
+    <p>Your AI. Your Way. Always.</p>
+  </section>
+
+</main>
+
+<section class="skills">
+  <div class="skills-title">QUICK SKILLS</div>
+
+  <div class="skill-grid">
+    <div class="skill" onclick="skill('Research')">
+      <div class="skill-icon">🌐</div>
+      Research
+    </div>
+
+    <div class="skill" onclick="skill('Coding')">
+      <div class="skill-icon">💻</div>
+      Coding
+    </div>
+
+    <div class="skill" onclick="skill('PDF')">
+      <div class="skill-icon">📄</div>
+      PDF
+    </div>
+
+    <div class="skill" onclick="skill('Data')">
+      <div class="skill-icon">📊</div>
+      Data
+    </div>
+
+    <div class="skill" onclick="skill('Images')">
+      <div class="skill-icon">🖼️</div>
+      Images
+    </div>
+
+    <div class="skill" onclick="skill('Files')">
+      <div class="skill-icon">📁</div>
+      Files
+    </div>
+  </div>
+</section>
+
+<div class="safe">
+  🛡️ Safety Mode Active
+</div>
+
+<div class="input-area">
+
+  <div class="input-box">
+
+    <input
+      id="input"
+      type="text"
+      placeholder="Ask MYSELF SANKAR anything..."
+      autocomplete="off"
+    >
+
+    <button class="voice" onclick="voiceInput()">🎤</button>
+
+    <button class="send" onclick="sendMessage()">➤</button>
+
+  </div>
+
+  <div class="bottom">
+    <div><span>💬</span>Chat</div>
+    <div><span>🧠</span>Skills</div>
+    <div><span>🛠️</span>Tools</div>
+    <div><span>📁</span>Files</div>
+    <div><span>⚙️</span>Settings</div>
+  </div>
+
+</div>
+
+<script>
+
+const input = document.getElementById("input");
+const chat = document.getElementById("chat");
+const welcome = document.getElementById("welcome");
+
+input.addEventListener("keydown",function(e){
+  if(e.key === "Enter"){
+    sendMessage();
+  }
+});
+
+function addMessage(text,type){
+
+  if(welcome){
+    welcome.style.display="none";
+  }
+
+  const msg=document.createElement("div");
+  msg.className="message "+type;
+  msg.textContent=text;
+
+  chat.appendChild(msg);
+
+  window.scrollTo({
+    top:document.body.scrollHeight,
+    behavior:"smooth"
+  });
