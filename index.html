@@ -406,3 +406,12 @@ function addMessage(text,type){
     top:document.body.scrollHeight,
     behavior:"smooth"
   });
+}
+  function sendMessage(){
+  const text = input.value.trim();
+  if(!text) return;
+  addMessage(text, "user");
+  input.value = "";
+  addMessage("Hello! I am MYSELF SANKAR. How can I help you today?", "bot");
+  }
+    
