@@ -384,34 +384,40 @@ const input = document.getElementById("input");
 const chat = document.getElementById("chat");
 const welcome = document.getElementById("welcome");
 
-input.addEventListener("keydown",function(e){
+input.addEventListener("keydown", function(e){
   if(e.key === "Enter"){
     sendMessage();
   }
 });
 
-function addMessage(text,type){
-
+function addMessage(text, type){
   if(welcome){
-    welcome.style.display="none";
+    welcome.style.display = "none";
   }
-
-  const msg=document.createElement("div");
-  msg.className="message "+type;
-  msg.textContent=text;
-
+  const msg = document.createElement("div");
+  msg.className = "message " + type;
+  msg.textContent = text;
   chat.appendChild(msg);
-
-  window.scrollTo({
-    top:document.body.scrollHeight,
-    behavior:"smooth"
-  });
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }
-  function sendMessage(){
+
+function sendMessage(){
   const text = input.value.trim();
   if(!text) return;
   addMessage(text, "user");
   input.value = "";
-  addMessage("Hello! I am MYSELF SANKAR. How can I help you today?", "bot");
-  }
-    
+  addMessage("Hello! I am MYSELF SANKAR. How can I help you today?", "ai");
+}
+
+function skill(name){
+  input.value = name + ": ";
+  input.focus();
+}
+
+function voiceInput(){
+  alert("Voice input isn't set up yet.");
+}
+
+</script>
+</body>
+</html>
